@@ -32,6 +32,4 @@ fetch("http://localhost:3000/api/teddies")
 		//On relis notre div à la balise main
 		main.appendChild(div);
 	}
-});
-
-//Pour la suite on utilisera queryselector et ??
+})
