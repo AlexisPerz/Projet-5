@@ -1,6 +1,12 @@
 //On créer une variable et on demande d'écrire dans la balise main
 let main = document.getElementById("main");
 
+// Stocke le produit dans le local storage et redirige vers la page produit.html
+function displayProduct(product) {
+	localStorage.setItem('product', JSON.stringify(product));
+	document.location = "produit.html";
+}
+
 //On récupère les éléments du localhost et on créer une boucle for pour intégrer nos éléments
 fetch("http://localhost:3000/api/teddies")
 .then((res) => res.json())
@@ -15,6 +21,11 @@ fetch("http://localhost:3000/api/teddies")
 		let a=document.createElement('A');
 		a.href="produit.html";
 		a.innerHTML=product.name+'<br/>';
+
+		a.addEventListener('click', (event) => {
+			event.preventDefault(); // Empêche le liens de rediriger vers une autre page
+		    displayProduct(product); // Appel la fonction qui va stocker le produit 
+		});
 
 		//On créer une balise img et on récupère l'Url de l'image
 		let img=document.createElement('img');
