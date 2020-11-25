@@ -7,6 +7,14 @@ let main = document.getElementById("main");
 fetch("http://localhost:3000/api/teddies/"+id)
 .then((res) =>{
 	res.json().then(product=>{
+
+		for (let i = 0; i < product.colors.length; i++) {
+			Things[i]
+
+			const select = document.createElement('select');
+			
+		}
+
 		//On créer une div et on lui attribut une classe
 		let div=document.createElement('DIV');
 		div.classList.add("col-4");
@@ -35,44 +43,20 @@ fetch("http://localhost:3000/api/teddies/"+id)
 	})
 })
 
-let carts = document.querySelectorAll(".panier");
+let bouton = document.querySelectorAll(".bouton");
 
-let products = [
-	{
-		name: 'Norbert',
-		tag: 'Ours 1',
-		price: 2900,
-		inCart: 0
-	},
-	{
-		name: 'Arnold',
-		tag: 'Ours 2',
-		price: 3900,
-		inCart: 0
-	},
-	{
-		name: 'Lenny and Carl',
-		tag: 'Ours 3',
-		price: 5900,
-		inCart: 0
-	},
-	{
-		name: 'Gustav',
-		tag: 'Ours 4',
-		price: 4500,
-		inCart: 0
-	},
-	{
-		name: 'Garfunkel',
-		tag: 'Ours 5',
-		price: 5500,
-		inCart: 0
-	}
-];
+function addtocart() {
 
-for (var i = 0; i < carts.length; i++) {
-	carts[i].addEventListener("click", () => {
-		cartNumbers(products[i]);
+}
+
+for (let i = 0; i < localStorage.length; i++) {
+  let data = JSON.parse(localStorage.getItem(localStorage.key(i)));
+  products.push(data.id);
+}
+
+for (let i = 0; i < localStorage.length; i++) {
+	localStorage[i].addEventListener("click", () => {
+		cartNumbers(localStorage[i]);
 	})
 }
 
