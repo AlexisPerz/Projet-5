@@ -8,13 +8,14 @@ fetch("http://localhost:3000/api/teddies/"+id)
 .then((res) =>{
 	res.json().then(product=>{
 
-		for (let i = 0; i < product.colors.length; i++) {
-			Things[i]
+		displayProduct(product);
 
-			const select = document.createElement('select');
-			
-		}
+		displayColor(product);
 
+	})
+})
+
+function displayProduct(product){
 		//On créer une div et on lui attribut une classe
 		let div=document.createElement('DIV');
 		div.classList.add("col-4");
@@ -39,49 +40,13 @@ fetch("http://localhost:3000/api/teddies/"+id)
 
 		//On relis notre div à la balise main
 		main.appendChild(div);
-
-	})
-})
-
-let bouton = document.querySelectorAll(".bouton");
-
-function addtocart() {
-
 }
 
-for (let i = 0; i < localStorage.length; i++) {
-  let data = JSON.parse(localStorage.getItem(localStorage.key(i)));
-  products.push(data.id);
-}
-
-for (let i = 0; i < localStorage.length; i++) {
-	localStorage[i].addEventListener("click", () => {
-		cartNumbers(localStorage[i]);
+function displayColor(product){
+	let color=document.getElementById('color');
+	product.colors.forEach(element => {
+		let option=document.createElement('OPTION');
+		option.innerHTML=element;
+		color.appendChild(option);
 	})
 }
-
-function onLoadCartNumbers() {
-	let productNumbers = localStorage.getItem('cartNumbers');
-
-	if (productNumbers) {
-		document.querySelector('.nav-item span').textContent = productNumbers;
-	}
-}
-
-function cartNumbers(product) {
-	console.log("Le produit sélectionner est ", product);
-
-	let productNumbers = localStorage.getItem('cartNumbers');
-
-	productNumbers = parseInt(productNumbers);
-
-	if (productNumbers) {
-		localStorage.setItem('cartNumbers', productNumbers + 1);
-		document.querySelector('.nav-item span').textContent = productNumbers + 1;
-	} else {
-		localStorage.setItem('cartNumbers', 1);
-		document.querySelector('.nav-item span').textContent = 1;
-	}
-}
-
-onLoadCartNumbers();
