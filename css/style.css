@@ -1,3 +1,28 @@
 img{
 	width: 150px;
 }
+
+.card{
+	width: 30rem;
+}
+
+.imageproduit{
+	margin-left: 100px;
+	width: 250px;
+}
+
+.nomproduit{
+	font-weight: bold;
+	margin: 10px 10px 0 10px;
+	font-size: 25px;
+}
+
+.prixproduit{
+	font-weight: bold;
+	margin: 0 10px 0 10px;
+	font-size: 20px;
+}
+
+.descriptionproduit{
+	margin: 0 10px 10px 10px;
+}
