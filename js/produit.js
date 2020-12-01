@@ -1,5 +1,4 @@
 const queryString = window.location.search;
-
 const id = new URLSearchParams(queryString).get('id');
 
 let main = document.getElementById("main");
@@ -9,32 +8,48 @@ fetch("http://localhost:3000/api/teddies/"+id)
 	res.json().then(product=>{
 
 		displayProduct(product);
-
 		displayColor(product);
 
 		const form = document.getElementById("form");
 		form.addEventListener('submit', function (e) {
 		e.preventDefault();
 		const selectColors = document.getElementById('color');
-		const teddyId = product._id;
-		const color = selectColors.value;
-		localStorage.setItem("cart", JSON.stringify({color, teddyId}));
-		console.log(teddyId, color);
+		let panier=[]; 
+		let isPresent=false;
+		let lpanier=JSON.parse(localStorage.getItem('cart'));
+		if(lpanier){
+			lpanier.forEach(element=>{
+				if(element.id==id && element.color==selectColors.value){
+					element.qty++;
+					isPresent=true;
+				}
+			})
+			panier=lpanier
+		}
+		if(!isPresent){
+			let teddiesorder={
+				'id':product._id,
+				'nom':product.name,
+				'color':selectColors.value,
+				'prix':product.price,
+				'qty':1
+			}
+			panier.push(teddiesorder);
+		}
+		localStorage.setItem('cart', JSON.stringify(panier));
 		})
 	})
 })
 
 function displayProduct(product){
 
-		let section=document.querySelector('section');
-
 		//On créer une balise img et on récupère l'Url de l'image
 		let img=document.createElement('img');
 		img.src=product.imageUrl;
 		img.classList.add("imageproduit");
 
-		//On relis notre image à la section
-		section.appendChild(img);
+		//On relis notre image au main
+		main.appendChild(img);
 
 		//On créer une div et on lui attribut une classe
 		let div=document.createElement('DIV');
