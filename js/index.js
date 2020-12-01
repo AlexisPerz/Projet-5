@@ -9,9 +9,10 @@ fetch("http://localhost:3000/api/teddies")
 .then(function(products) {
 	for(let product of products) {
 
-		//On créer une div et on lui attribut une classe
-		let div=document.createElement('DIV');
-		div.classList.add("col-4");
+		let card = document.createElement('div');
+		card.classList.add('card');
+
+		main.appendChild(card);
 
 		//On créer une balise img et on récupère l'Url de l'image
 		let img=document.createElement('img');
@@ -21,17 +22,19 @@ fetch("http://localhost:3000/api/teddies")
 		let a=document.createElement('A');
 		a.href="produit.html?id="+product._id;
 		a.innerHTML=product.name+'<br/>';
+		a.classList.add("nomproduit2");
 
 		//On créer une balise p et on récupère le prix 
 		let p=document.createElement('P');
 		p.innerHTML=product.price+'€';
+		p.classList.add("prixproduit2");
 
 		//On relis nos éléments à la div
-		div.appendChild(img);
-		div.appendChild(a);
-		div.appendChild(p);
+		card.appendChild(img);
+		card.appendChild(a);
+		card.appendChild(p);
 
 		//On relis notre div à la balise main
-		main.appendChild(div);
+		main.appendChild(card);
 	}
 })

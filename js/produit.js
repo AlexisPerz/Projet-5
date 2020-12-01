@@ -12,7 +12,6 @@ fetch("http://localhost:3000/api/teddies/"+id)
 
 		displayColor(product);
 
-		// Écoute de notre formulaire
 		const form = document.getElementById("form");
 		form.addEventListener('submit', function (e) {
 		e.preventDefault();
@@ -27,7 +26,7 @@ fetch("http://localhost:3000/api/teddies/"+id)
 
 function displayProduct(product){
 
-		let section = document.querySelector('section');
+		let section=document.querySelector('section');
 
 		//On créer une balise img et on récupère l'Url de l'image
 		let img=document.createElement('img');

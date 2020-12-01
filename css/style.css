@@ -1,28 +1,27 @@
 img{
-	width: 150px;
+	width: 250px;
 }
 
-.card{
-	width: 30rem;
-}
-
-.imageproduit{
-	margin-left: -15px;
-	width: 480px;
-}
-
-.nomproduit{
+.nomproduit2{
 	font-weight: bold;
-	margin: 10px 10px 0 10px;
-	font-size: 25px;
-}
-
-.prixproduit{
-	font-weight: bold;
-	margin: 0 10px 0 10px;
 	font-size: 20px;
 }
 
-.descriptionproduit{
-	margin: 0 10px 10px 10px;
+.prixproduit2{
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.card{
+	padding: 0.5rem;
+	margin: 10px 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#main{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
