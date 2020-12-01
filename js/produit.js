@@ -27,16 +27,19 @@ fetch("http://localhost:3000/api/teddies/"+id)
 
 function displayProduct(product){
 
-		const section = document.querySelector('section');
-
-		//On créer une div et on lui attribut une classe
-		let div=document.createElement('DIV');
-		div.classList.add("carte");
+		let section = document.querySelector('section');
 
 		//On créer une balise img et on récupère l'Url de l'image
 		let img=document.createElement('img');
 		img.src=product.imageUrl;
 		img.classList.add("imageproduit");
+
+		//On relis notre image à la section
+		section.appendChild(img);
+
+		//On créer une div et on lui attribut une classe
+		let div=document.createElement('DIV');
+		div.classList.add("carte");
 
 		//On créer une balise p et on récupère le nom du produit
 		let p=document.createElement('P');
@@ -54,7 +57,6 @@ function displayProduct(product){
 		p3.classList.add("descriptionproduit");
 
 		//On relis nos éléments à la div
-		section.appendChild(img);
 		div.appendChild(p);
 		div.appendChild(p2);
 		div.appendChild(p3);
