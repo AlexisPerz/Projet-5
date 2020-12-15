@@ -80,10 +80,12 @@ function displayProduct(product){
 }
 
 function displayColor(product){
+
 	let color=document.getElementById('color');
 	product.colors.forEach(element => {
-		let option=document.createElement('OPTION');
-		option.innerHTML=element;
-		color.appendChild(option);
+
+	let option=document.createElement('option');
+	option.innerHTML=element;
+	color.appendChild(option);
 	})
 }
