@@ -62,7 +62,7 @@ function displayProduct(product){
 
 		//On créer une balise p et on récupère le prix 
 		let p2=document.createElement('P');
-		p2.innerHTML=product.price+'€';
+		p2.innerHTML=product.price/100+",00€";
 		p2.classList.add("prixproduit");
 
 		//On créer une balise p et on récupère la description du produit

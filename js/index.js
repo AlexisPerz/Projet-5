@@ -1,8 +1,6 @@
 //On créer une variable et on demande d'écrire dans la balise main
 let main = document.getElementById("main");
 
-
-
 //On récupère les éléments du localhost et on créer une boucle for pour intégrer nos éléments
 fetch("http://localhost:3000/api/teddies")
 .then((res) => res.json())
@@ -26,7 +24,7 @@ fetch("http://localhost:3000/api/teddies")
 
 		//On créer une balise p et on récupère le prix 
 		let p=document.createElement('P');
-		p.innerHTML=product.price+'€';
+		p.innerHTML=product.price/100+",00€";
 		p.classList.add("prixproduit2");
 
 		//On relis nos éléments à la div
