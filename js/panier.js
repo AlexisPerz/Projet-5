@@ -7,6 +7,8 @@ const cart = JSON.parse(setCart);
 
 let totalHT=0;
 
+let div=document.createElement('div');
+
 //On créer un tableau avec une classe
 let table=document.createElement('table');
 table.classList.add('table');
@@ -45,8 +47,11 @@ thead.appendChild(tr);
 //On relis notre thead à notre tableau
 table.appendChild(thead);
 
-//On relis notre tableau à notre main
-main.appendChild(table);
+//On relis notre div à notre main
+main.appendChild(div);
+
+//On relis notre tableau à notre div
+div.appendChild(table);
 
 //On créer un deuxième tableau
 let table2=document.createElement('table');
@@ -64,8 +69,8 @@ thead2.appendChild(tr2);
 //On relis notre thead2 à notre deuxième tableau
 table2.appendChild(thead2);
 
-//On relis notre deuxième tableau à notre main
-main.appendChild(table2);
+//On relis notre tableau à notre div
+div.appendChild(table2);
 
 //On créer une boucle forEach
 cart.forEach(element=>{
@@ -98,8 +103,6 @@ cart.forEach(element=>{
 let th5=document.createElement('th');
 th5.innerHTML="Total HT :"+" "+totalHT+"€";
 
-localStorage.setItem('totalHT', totalHT);
-
 //On relis notre th5 à notre tr2
 tr2.appendChild(th5);
 
@@ -119,7 +122,7 @@ form.addEventListener("submit",async function (e) {
         city: city.value,
         email: email.value
 	}
-	const products = []; // Tableau Produits contenant seulement l'ID produits.
+	const products = [];
     for (let i = 0; i < cart.length; i++) {
         products.push(cart[i].id)
     }
@@ -139,7 +142,9 @@ form.addEventListener("submit",async function (e) {
 	})
 	.then(response => {
 			let orderID = JSON.stringify(response.orderId);
+			localStorage.clear();
 			localStorage.setItem("orderID", orderID);
+			localStorage.setItem('totalHT', totalHT);
 		})
 
 	location.href = "confirmation.html";

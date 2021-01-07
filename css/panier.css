@@ -1,0 +1,13 @@
+.bouton{
+    text-align: center;
+}
+
+.btn-primary{
+    width: 30%;
+    font-size: 120%;
+}
+
+#main{
+    display: flex;
+    flex-direction: column-reverse;
+}
