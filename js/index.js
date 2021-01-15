@@ -5,6 +5,12 @@ let main = document.getElementById("main");
 fetch("http://localhost:3000/api/teddies")
 .then((res) => res.json())
 .then(function(products) {
+
+	displayListOfProducts(products);
+	
+})
+
+function displayListOfProducts(products){
 	for(let product of products) {
 
 		let card = document.createElement('div');
@@ -35,4 +41,4 @@ fetch("http://localhost:3000/api/teddies")
 		//On relis notre div à la balise main
 		main.appendChild(card);
 	}
-})
+}

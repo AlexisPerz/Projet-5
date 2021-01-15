@@ -75,6 +75,12 @@ div.appendChild(table2);
 //On créer une boucle forEach
 cart.forEach(element=>{
 
+	fonctionTest(element);
+
+})
+
+function fonctionTest(element){
+
 	let tr3=document.createElement('tr');
 
 	let td1=document.createElement('td');
@@ -97,7 +103,7 @@ cart.forEach(element=>{
 	tr3.appendChild(td4);
 
 	table.appendChild(tr3);
-})
+}
 
 //On créer le nom de la ligne
 let th5=document.createElement('th');
@@ -126,8 +132,15 @@ form.addEventListener("submit",async function (e) {
     for (let i = 0; i < cart.length; i++) {
         products.push(cart[i].id)
     }
-    const data = {contact, products};
-    await fetch("http://localhost:3000/api/teddies/order", {
+	const data = {contact, products};
+
+	sendOrderToServer(data);
+    
+})
+
+function sendOrderToServer(data){
+	
+	fetch("http://localhost:3000/api/teddies/order", {
 
     headers: {
       'Accept': 'application/json',
@@ -136,16 +149,13 @@ form.addEventListener("submit",async function (e) {
 
     method: 'POST',
     body: JSON.stringify(data)
-  	})
-    .then(response => {
-		return response.json();
-	})
-	.then(response => {
+  	}).then(response => {
+		response.json().then(response => {
 			let orderID = JSON.stringify(response.orderId);
 			localStorage.clear();
 			localStorage.setItem("orderID", orderID);
 			localStorage.setItem('totalHT', totalHT);
-		})
-
-	location.href = "confirmation.html";
-})
+			location.href = "confirmation.html";
+	})
+	});
+}

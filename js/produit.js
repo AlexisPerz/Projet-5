@@ -9,35 +9,7 @@ fetch("http://localhost:3000/api/teddies/"+id)
 
 		displayProduct(product);
 		displayColor(product);
-
-		const form = document.getElementById("form");
-		form.addEventListener('submit', function (e) {
-		e.preventDefault();
-		const selectColors = document.getElementById('color');
-		let panier=[]; 
-		let isPresent=false;
-		let lpanier=JSON.parse(localStorage.getItem('cart'));
-		if(lpanier){
-			lpanier.forEach(element=>{
-				if(element.id==id && element.color==selectColors.value){
-					element.qty++;
-					isPresent=true;
-				}
-			})
-			panier=lpanier
-		}
-		if(!isPresent){
-			let teddiesorder={
-				'id':product._id,
-				'nom':product.name,
-				'color':selectColors.value,
-				'prix':product.price,
-				'qty':1
-			}
-			panier.push(teddiesorder);
-		}
-		localStorage.setItem('cart', JSON.stringify(panier));
-		})
+		addProductInCart(product)
 	})
 })
 
@@ -88,4 +60,36 @@ function displayColor(product){
 	option.innerHTML=element;
 	color.appendChild(option);
 	})
+}
+
+function addProductInCart(product){
+
+	const form = document.getElementById("form");
+		form.addEventListener('submit', function (e) {
+		e.preventDefault();
+		const selectColors = document.getElementById('color');
+		let panier=[]; 
+		let isPresent=false;
+		let lpanier=JSON.parse(localStorage.getItem('cart'));
+		if(lpanier){
+			lpanier.forEach(element=>{
+				if(element.id==id && element.color==selectColors.value){
+					element.qty++;
+					isPresent=true;
+				}
+			})
+			panier=lpanier
+		}
+		if(!isPresent){
+			let teddiesorder={
+				'id':product._id,
+				'nom':product.name,
+				'color':selectColors.value,
+				'prix':product.price,
+				'qty':1
+			}
+			panier.push(teddiesorder);
+		}
+		localStorage.setItem('cart', JSON.stringify(panier));
+		})
 }
