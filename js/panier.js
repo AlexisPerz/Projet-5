@@ -75,11 +75,11 @@ div.appendChild(table2);
 //On créer une boucle forEach
 cart.forEach(element=>{
 
-	fonctionTest(element);
+	displayTable(element);
 
 })
 
-function fonctionTest(element){
+function displayTable(element){
 
 	let tr3=document.createElement('tr');
 
@@ -90,7 +90,35 @@ function fonctionTest(element){
 	td2.innerHTML=element.color;
 
 	let td3=document.createElement('td');
-	td3.innerHTML=element.qty;
+	let p5=document.createElement('span');
+	p5.innerHTML=element.qty;
+	let btnPlus=document.createElement('button');
+	btnPlus.innerHTML='+';
+	btnPlus.id=element.id+element.color;
+	btnPlus.addEventListener('click',()=>{
+		p5.innerHTML=element.qty++;
+		td4.innerText=element.prix*element.qty/100+",00€";
+		cart.forEach(data=>{
+			if(data.color=btnPlus.id.slice(24,btnPlus.length) && data.id==btnPlus.id.slice(0,23)){
+				
+			}
+		})
+	})
+	let btnMoins=document.createElement('button');
+	btnMoins.innerHTML="-";
+	btnMoins.id=element.id+element.color;
+	btnMoins.addEventListener('click',()=>{
+		p5.innerHTML=element.qty--;
+		td4.innerText=element.prix*element.qty/100+",00€";
+		cart.forEach(data=>{
+			if(data.color=btnMoins.id.slice(24,btnMoins.length) && data.id==btnMoins.id.slice(0,23)){
+				
+			}
+		})
+	})
+	td3.appendChild(btnPlus);
+	td3.appendChild(p5);
+	td3.appendChild(btnMoins);
 
 	let td4=document.createElement('td');
 	td4.innerText=element.prix*element.qty/100+",00€";
