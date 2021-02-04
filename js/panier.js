@@ -2,8 +2,8 @@
 let main = document.getElementById('main');
 
 //On récupère les éléments du localStorage
-const setCart = localStorage.getItem("cart");
-const cart = JSON.parse(setCart);
+
+const cart = getBasket();
 
 let totalHT=0;
 
@@ -90,39 +90,10 @@ function displayTable(element){
 	td2.innerHTML=element.color;
 
 	let td3=document.createElement('td');
-	let p5=document.createElement('span');
-	p5.innerHTML=element.qty;
-	let btnPlus=document.createElement('button');
-	btnPlus.innerHTML='+';
-	btnPlus.id=element.id+element.color;
-	btnPlus.addEventListener('click',()=>{
-		p5.innerHTML=element.qty++;
-		td4.innerText=element.prix*element.qty/100+",00€";
-		cart.forEach(data=>{
-			if(data.color=btnPlus.id.slice(24,btnPlus.length) && data.id==btnPlus.id.slice(0,23)){
-				
-			}
-		})
-	})
-	let btnMoins=document.createElement('button');
-	btnMoins.innerHTML="-";
-	btnMoins.id=element.id+element.color;
-	btnMoins.addEventListener('click',()=>{
-		p5.innerHTML=element.qty--;
-		td4.innerText=element.prix*element.qty/100+",00€";
-		cart.forEach(data=>{
-			if(data.color=btnMoins.id.slice(24,btnMoins.length) && data.id==btnMoins.id.slice(0,23)){
-				
-			}
-		})
-	})
-	td3.appendChild(btnPlus);
-	td3.appendChild(p5);
-	td3.appendChild(btnMoins);
+	td3.innerHTML=element.qty;
 
 	let td4=document.createElement('td');
 	td4.innerText=element.prix*element.qty/100+",00€";
-
 	totalHT = totalHT + (parseInt(td4.innerText));
 
 	tr3.appendChild(td1);
@@ -162,8 +133,9 @@ form.addEventListener("submit",async function (e) {
     }
 	const data = {contact, products};
 
-	sendOrderToServer(data);
-    
+	if (this.reportValidity()){
+		sendOrderToServer(data);
+	}
 })
 
 function sendOrderToServer(data){
