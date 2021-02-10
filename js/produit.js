@@ -68,19 +68,6 @@ function addProductInCart(product){
 		form.addEventListener('submit', function (e) {
 		e.preventDefault();
 		const selectColors = document.getElementById('color');
-		let panier=[]; 
-		let isPresent=false;
-		let lpanier=JSON.parse(localStorage.getItem('cart'));
-		if(lpanier){
-			lpanier.forEach(element=>{
-				if(element.id==id && element.color==selectColors.value){
-					element.qty++;
-					isPresent=true;
-				}
-			})
-			panier=lpanier
-		}
-		if(!isPresent){
 			let teddiesorder={
 				'id':product._id,
 				'nom':product.name,
@@ -88,8 +75,6 @@ function addProductInCart(product){
 				'prix':product.price,
 				'qty':1
 			}
-			panier.push(teddiesorder);
-		}
-		localStorage.setItem('cart', JSON.stringify(panier));
+			addProduct(teddiesorder);
 		})
 }

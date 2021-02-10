@@ -111,7 +111,7 @@ th5.innerHTML="Total HT :"+" "+totalHT+"€";
 //On relis notre th5 à notre tr2
 tr2.appendChild(th5);
 
-const form = document.getElementById("form");
+const form = document.getElementById("form1");
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
 const address = document.getElementById("address");
@@ -132,7 +132,7 @@ form.addEventListener("submit",async function (e) {
         products.push(cart[i].id)
     }
 	const data = {contact, products};
-
+	
 	if (this.reportValidity()){
 		sendOrderToServer(data);
 	}
@@ -153,9 +153,9 @@ function sendOrderToServer(data){
 		response.json().then(response => {
 			let orderID = JSON.stringify(response.orderId);
 			localStorage.clear();
-			localStorage.setItem("orderID", orderID);
-			localStorage.setItem('totalHT', totalHT);
-			location.href = "confirmation.html";
+			// localStorage.setItem("orderID", orderID);
+			// localStorage.setItem('totalHT', totalHT);
+			location.assign("confirmation.html?orderId="+orderID+"&totalHT="+totalHT);
 	})
 	});
 }

@@ -1,8 +1,10 @@
 let main = document.getElementById('main');
 
-let orderID = JSON.parse(localStorage.getItem('orderID'));
+const queryString = window.location.search;
 
-let totalHT = JSON.parse(localStorage.getItem('totalHT'));
+let orderID = new URLSearchParams(queryString).get('orderId');
+
+let totalHT = new URLSearchParams(queryString).get('totalHT');
 
 displayOrdered();
 
