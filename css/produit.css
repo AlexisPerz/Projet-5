@@ -21,3 +21,33 @@
 .descriptionproduit{
 	margin: 0 10px 10px 10px;
 }
+
+@media screen and (max-width: 480px){
+	.imageproduit{
+		width: 20rem;
+	}
+	.nomproduit{
+		font-weight: bold;
+		margin: 10px 10px 0 10px;
+		font-size: 25px;
+		text-align: center;
+	}
+	
+	.prixproduit{
+		font-weight: bold;
+		margin: 0 10px 0 10px;
+		font-size: 20px;
+		text-align: center;
+	}
+	
+	.descriptionproduit{
+		margin: 0 10px 10px 10px;
+		text-align: center;
+	}
+	.row{
+		text-align: center;
+	}
+	.col-6{
+		margin: auto;
+	}
+}

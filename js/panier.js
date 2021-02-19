@@ -8,6 +8,7 @@ const cart = getBasket();
 let totalHT=0;
 
 let div=document.createElement('div');
+div.classList.add('div');
 
 //On créer un tableau avec une classe
 let table=document.createElement('table');

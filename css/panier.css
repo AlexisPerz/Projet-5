@@ -19,3 +19,15 @@ th{
 td{
     text-align: center;
 }
+@media screen and (max-width: 480px){
+    .btn-primary{
+        width: 50%;
+        font-size: 100%;
+    }
+    #form{
+        text-align: center;
+    }
+    .table{
+        font-size: small;
+    }
+}
